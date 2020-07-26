@@ -8,7 +8,7 @@ NIST recently updates their Digital Identity Guidelines in June 2017. The new gu
 4. Not be a common password
 
 ```
-cat input_password | python3 password_validator1 weak_password
+cat input_password | python3 password_validator-check weak_password
 mom -> Error: Too Short
 password1 -> Error: Too Common
 *** -> Error: Invalid Charaters
@@ -34,7 +34,7 @@ There were two reasons for not using a List:
 
 * The list of weak password contains almost 1 billion rows. This meant iterating through every character of every word in the list of approximately 1 billion words delimited by new line characters. 
 
-This clearly meant, that a time complexity of the order of O(n^m) would be involved. This signifies an exponential time complexity. 
+* This clearly meant, that a time complexity of the order of O(n^m) would be involved. This signifies an           exponential time complexity. 
 
 2. Dictionary/HashMap/HashSet 
 
