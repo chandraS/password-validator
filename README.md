@@ -8,7 +8,7 @@ NIST recently updates their Digital Identity Guidelines in June 2017. The new gu
 4. Not be a common password
 
 ```
-cat input_password | python3 password_validator-check weak_password
+cat input_passwords.txt | ./password_validator weak_password_list.txt
 mom -> Error: Too Short
 password1 -> Error: Too Common
 *** -> Error: Invalid Charaters
@@ -18,13 +18,32 @@ The program should accept passwords from STDIN in newline delimited format and p
 
 Asterixes used to print unprintable characters
 
+### Requirement
+
+Linux 
+Python 3+ 
+
+### Installation 
+
+Run `pip install .` from the root folder 
+
+### Usage 
+
+```
+cat input_password | python3 password_validator-check weak_password
+1qaz2wsx-> Error: Too Common
+mom -> Error: Too Short
+*******-> Error: Invalid Charaters
+```
+
 ### How is the executable generated
 
 I create a symbolic link for ```main.py``` which creates an executable. The symbolic link is password_validator-check
 
 ```ln -s main.py password_validator-check```
 
-## Analyzing different data structures and selecting the one which is efficient(Trie)
+
+## Analyzing different available data structures and selecting the one which is efficient(Trie)
 
 1. List 
 
@@ -45,6 +64,11 @@ The second approach could have been to use a key value pair of the passwords in 
 The solution used for this assessment leverages the Trie data structure. Trie is a special tree capable of storing sequence of values in such a way that tracing the path from root to any node yields an entire string. 
 
 Trie works on the concept of first buiding and then searching. The available texts or words are first converted into a trie. This phase is called building the trie. If we are storing lots of words that start with similar patterns, tries may reduce the overall storage cost by storing shared prefixes once. The biggest advantage of using a trie is that they save the prefixes of words and when a particular word is queried, only those characters are checked that are diffrent than the prefix, instead of checking every character of the word during every search.
+
+
+### Future enhancements 
+
+The future steps could be to create an image out the executable and run it within a Docker container. As of now, the containerziation part works partially. To make containerization work completely, would need some more time and that might go beyond the submission deadline. Therefore, I did not include it in this version 
 
 
 
