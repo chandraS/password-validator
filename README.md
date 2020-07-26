@@ -7,6 +7,8 @@ NIST recently updates their Digital Identity Guidelines in June 2017. The new gu
 3. Allow all ASCII characters and spaces (unicode   optional)
 4. Not be a common password
 
+Example:
+
 ```
 cat input_passwords.txt | ./password_validator weak_password_list.txt
 mom -> Error: Too Short
@@ -17,7 +19,7 @@ password1 -> Error: Too Common
 
 The program should accept passwords from STDIN in newline delimited format and print invalid passwords to the command line
 
-Asterixes used to print unprintable characters
+Asterixes should be used to print unprintable characters
 
 ## How to approach 
 
