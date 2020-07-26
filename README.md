@@ -68,7 +68,7 @@ Trie works on the concept of first buiding and then searching. The available tex
 
 ### Future enhancements 
 
-The future steps could be to create an image out the executable and run it within a Docker container. As of now, the containerziation part works partially. To make containerization work completely, would need some more time and that might go beyond the submission deadline. Therefore, I did not include it in this version 
+The future steps could be to create an image out of the executable and run it within a `Docker` container. As of now, the containerziation part works partially. To make containerization work completely, would need some more time and that might go beyond the submission deadline. Therefore, I did not include it in this version 
 
 
 
