@@ -12,6 +12,7 @@ cat input_password | python3 password_validator1 weak_password
 mom -> Error: Too Short
 password1 -> Error: Too Common
 *** -> Error: Invalid Charaters
+```
 
 The program should accept passwords from STDIN in newline delimited format and print invalid passwords to the command line
 
