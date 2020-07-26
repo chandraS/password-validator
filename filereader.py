@@ -1,43 +1,33 @@
-def passwd_check(check):
+from check_common import add, search, TrieNode
 
-    val = True
+if __name__ == "__main__":
+    root = TrieNode('*')
 
-    if len(check) < 8:
-        print('length should be atleast 8 characters long')
-        val = False
-    
-    if len(check) > 64:
-        print('Exceeded maximum length allowed')
-        val = False
-    
-    if not isascii(check):
-        print('does not contain ascii characters')
-        val = False
-    
-    if val:
-        return val
+    with open("weak_password.txt", "r", encoding='utf-8') as fp:
+        lines = fp.readlines()
 
-def isascii(check):
-    return len(check) == len(check.encode())
-          
+        for line in lines:
+            add(root, line.strip())
+            
+#     tries will be complete
 
-def main():
-    ##passwd= 'भारत'
-
-    with open("input_password.txt", "r") as fp:
+    with open("input_password.txt", "r", encoding='utf-8') as fp:
         lines = fp.readlines()
 
         for line in lines:
             check = line.strip()
 
+            if not len(check) == len(check.encode()):
+                print(len(check)*'*' +' does not contain ascii characters')
 
-    if(passwd_check(check)):
-        print("password is valid")
-    else:
-        print("password is invalid")
+            elif len(check) < 8:
+                print(check+' length should be atleast 8 characters long')
+        
+    
+            elif len(check) > 64:
+                print(check+' Exceeded maximum length allowed')
+                                   
+            else:
+                search(root, line.strip())
 
-
-
-if __name__ == "__main__":
-    main()
     
