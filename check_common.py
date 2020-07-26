@@ -12,7 +12,11 @@ class TrieNode(object):
         # Is it the last character of the word.`
         self.word_finished = False
 
+<<<<<<< HEAD
 ##add function is to build the trie 
+=======
+## Phase 1 - add function is to build the trie 
+>>>>>>> 1d468c3fbb5857fc62c6c41673ce735e44ce6b91
 
 def add(root, word: str):
     """
@@ -37,7 +41,8 @@ def add(root, word: str):
     # Everything finished. Mark it as the end of a word.
     node.word_finished = True
 
-
+## Phase 2 - search function to compare the input against the weak_password list 
+    
 def search(root, prefix):
     """
     Check and return
