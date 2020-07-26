@@ -29,11 +29,11 @@ There were two reasons for not using a List:
 
 * The list of weak password contains almost 1 billion rows. This meant iterating through every character of every word in the list of approximately 1 billion words delimited by new line characters. 
 
-This clearly meant, that a time complexity of the order of O(n^m) would be involved. This signifies an exponential time complexity. 
+* This clearly meant, that a time complexity of the order of O(n^m) would be involved. This signifies an exponential time complexity. 
 
 2. Dictionary/HashMap/HashSet 
 
-The second approach could have been to use a key value pair of the passwords in the weak password file consisting of 1 billion rows. A dictionary would take the entire file into the memory and create hashes. This might be useful with small files but as the size increases, the search would take longer to complete. 
+The second approach could have been to use a key value pair of the passwords in the weak password file consisting of 1 billion rows. A dictionary would take the entire file into the memory and create hashes. This might be useful with small files but as the size increases, the search would take longer to complete. Hence, this method was not feasible as well.
 
 3. Tries
 
