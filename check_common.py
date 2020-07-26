@@ -1,6 +1,9 @@
+## Phase 1 - Build the trie with the given passwords in weak_password.txt
+## Phase 2 - compare the input password with the words in trie and chek if the input password is a common password 
+
 class TrieNode(object):
     """
-    Our trie node implementation. Very basic. but does the job
+    Trie node implementation. Starting with initializing a constructor with init function
     """
 
     def __init__(self, char: str):
@@ -9,6 +12,7 @@ class TrieNode(object):
         # Is it the last character of the word.`
         self.word_finished = False
 
+##add function is to build the trie 
 
 def add(root, word: str):
     """
@@ -38,7 +42,6 @@ def search(root, prefix):
     """
     Check and return
       1. If the prefix exsists in any of the words we added so far
-      2. If yes then how may words actually have the prefix
     """
     node = root
     # If the root node has no children, then return False.
@@ -60,5 +63,4 @@ def search(root, prefix):
         print(prefix + ' - Word found in common password')
         return True
     
-    ##print(prefix + ' - Word not found in common password')
     return False
