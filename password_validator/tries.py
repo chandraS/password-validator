@@ -1,3 +1,6 @@
+## Phase 1 - Build the trie with the given passwords in weak_password.txt (please check add function below)
+## Phase 2 - compare the input password with the words in trie and chek if the input password is a common password (please check search function below)
+
 class TrieNode(object):
 	"""
 	Our trie node implementation. Very basic. but does the job
