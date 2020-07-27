@@ -29,7 +29,7 @@ Python 3+
 
 Run `pip install -e .` from the root folder 
 
-![image1](./images/.PNG)
+![image1](./images/pip-install.PNG)
 
 The above command will install a package for the password_validator tool in developer mode.
 
@@ -45,12 +45,6 @@ mom -> Error: Too Short
 ```
 
 ![image2](./images/output.PNG)
-
-If running on windows, its recommended to install a python virtual environment
-
-Run `python3 -m venv venv` to install virtual environment 
-
-Run `. venv/bin/activate` to enable the virtual environment
 
 In order to create a zipped distribution package, please run `python3 setup.py sdist`
 
