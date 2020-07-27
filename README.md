@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/chandraS/password-validator.svg?branch=master)](https://travis-ci.org/chandraS/password-validator) 
 
-[![License](https://img.shields.io/github/license/chandraS/password-validator)]
+![License](https://img.shields.io/github/license/chandraS/password-validator)
 
 ## Background 
 
