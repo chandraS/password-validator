@@ -22,7 +22,6 @@ Asterixes used to print unprintable characters
 
 ### Requirement
 
-Linux  
 Python 3+ 
 
 ### Installation 
