@@ -1,9 +1,35 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+
+NAME = "password_validator"
+VERSION = "0.0.1"
+DESCRIPTION = 'Password validator to check input password against Digital Identity Guidelines'
+
+REQUIRES = [
+    'pytest==5.4.3',
+	'setuptools>=40.0',
+]
+
+classifiers = [
+	'Programming Language :: Python :: 3',
+	'License :: MIT License'
+]
+
 setup(
-    name='password_validator',
-    version='0.1',
-    description='Package to validate password',
-    author='Shikhar Chandra',
-    author_email='chandra.shikhar@gmail.com',
-    packages=['password_validator']
+    name=NAME,
+    version=VERSION,
+    description=DESCRIPTION,
+    author_email="shicha1203@tamu.edu",
+    url="https://github.com/chandraS",
+    install_requires=REQUIRES,
+    packages=find_packages(exclude=["*.tests", "tests", "tests.*"]),
+    scripts=[],
+	license='MIT',
+	keywords='password_validator',
+	classifiers = classifiers,
+	entry_points={
+        'console_scripts': [
+            'password_validator = main:main',
+        ],
+    }
+
 )
