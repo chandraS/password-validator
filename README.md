@@ -11,12 +11,9 @@ NIST recently updates their Digital Identity Guidelines in June 2017. The new gu
 
 ```
 cat input_passwords.txt | ./password_validator weak_password_list.txt
-1qaz2wsx -> Error: Too Common
-loser --> Error: Too Short
-mom --> Error: Too Short
-anastasia -> Error: Too Common
-asdsd*gtj h-> Error: Invalid Characters
-aaaaaaaaaaaa**-> Error: Invalid Characters
+mom -> Error: Too Short
+password1 -> Error: Too Common
+*** -> Error: Invalid Charaters
 ```
 
 The program should accept passwords from STDIN in newline delimited format and print invalid passwords to the command line
@@ -41,9 +38,12 @@ In order to install it in production mode, please run `pip install .`
 
 ```
 cat input_password | password_validator weak_password
-1qaz2wsx-> Error: Too Common
-mom -> Error: Too Short
-*******-> Error: Invalid Charaters
+1qaz2wsx -> Error: Too Common
+loser --> Error: Too Short
+mom --> Error: Too Short
+anastasia -> Error: Too Common
+asdsd*gtj h-> Error: Invalid Characters
+aaaaaaaaaaaa**-> Error: Invalid Characters
 ```
 
 ![image2](./images/output.PNG)
@@ -67,7 +67,7 @@ We are not going with list apprach because iterating through the elements would 
 
 2. HashSet 
 
-The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem if the hash table is not too large to be stored in the memory. Although the look up time in hashset is O(1), but if the generated hashtable is very larger than the memory then computation is not possible. 
+The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem but the hashset can't grow more than the memory. Another approach could have been to break down the file in smaller chunks and then perform parellel processing on multiple servers but that would have gone out of the scope of the problem. The problem provided an ideal opportunity to use Trie, the next approach discussed below.
 
 3. Tries
 
