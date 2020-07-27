@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chandraS/password-validator.svg?branch=master)](https://travis-ci.org/chandraS/password-validator)
+
 ## Background 
 
 NIST recently updates their Digital Identity Guidelines in June 2017. The new guidelines specify general rules for handling the security of user supplied passwords. Previously passwords were suggested to have cer## Background 
