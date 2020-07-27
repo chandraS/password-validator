@@ -33,7 +33,7 @@ We are not going with list apprach because iterating through the elements would 
 
 ## 2. HashSet 
 
-The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and stored in the memory. Different hashes would be generated even for almost similar words, with almost similar prefixes - like War, War1. Hashing is a good way to approach the problem but the hashtable can grow more than the memory. The problem provided an ideal opportunity to use Trie, the next approach discussed below.
+The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and stored in the memory. Different hashes would be generated even for almost similar words, with almost similar prefixes - like War, War1, etc. Hashing is a good way to approach the problem but the hashtable can grow more out of the memory. Therefore, this problem provides an ideal opportunity to use Trie, the next approach discussed below.
 
 ## 3. Tries
 
