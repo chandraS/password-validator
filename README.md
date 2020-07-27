@@ -22,16 +22,16 @@ Asterixes used to print unprintable characters
 
 ## Analyzing different available data structures and selecting the one which is efficient(Trie)
 
-1. List 
+## 1. List 
 
 List is a dynamic data structure in which elements can be added or removed linearly. Searching a list involves O(n) time complexity. 
 We are not going with list apprach because iterating through the elements would mean going through each of the weak password in the file to check if the password exists or not. Hence, it could turn out to be time intensive process with a time complexity of O(nm)
 
-2. HashSet 
+## 2. HashSet 
 
 The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem but the hashset can't grow more than the memory. Another approach could have been to break down the file in smaller chunks and then perform parellel processing on multiple servers but that would have gone out of the scope of the problem. The problem provided an ideal opportunity to use Trie, the next approach discussed below.
 
-3. Tries
+## 3. Tries
 
 The solution used for this assessment leverages the Trie data structure. Trie is a special tree capable of storing sequence of values in such a way that tracing the path from root to any node yields an entire string. 
 
