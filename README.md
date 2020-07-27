@@ -46,7 +46,7 @@ If running on windows, its recommended to install a python virtual environment
 
 Run `python3 -m venv venv` to install virtual environment 
 
-Run `.venv/bin/activate` to enable the virtual environment
+Run `. venv/bin/activate` to enable the virtual environment
 
 In order to create a zipped distribution package, please run `python3 setup.py sdist`
 
@@ -62,19 +62,20 @@ In order to create a zipped distribution package, please run `python3 setup.py s
 
 1. List 
 
-List is a linear dynamic data structure in which elements can be added or removed linearly. This addition and removal involved O(n) time complexity. 
-
-Iterating through the rows would mean going through each of the 1 billion rows in the file to check if the password exists or not. Hence, it could turn out to be time intensive process
+List is a dynamic data structure in which elements can be added or removed linearly. Searching a list involves O(n) time complexity. 
+We are not going with list apprach because iterating through the elements would mean going through each of the weak password in the file to check if the password exists or not. Hence, it could turn out to be time intensive process with a time complexity of O(nm)
 
 2. HashSet 
 
-The second approach could have been to represent the passwords in the weak password file consisting of 1 billion rows, in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem if the file size is small. However, if the size starts increasing, it could be costly on memory
+The second approach could have been to represent the passwords in the weak password file in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem if the hash table is not too large to be stored in the memory. Although the look up time in hashset is O(1), but if the generated hashtable is very larger than the memory then computation is not possible. 
 
 3. Tries
 
 The solution used for this assessment leverages the Trie data structure. Trie is a special tree capable of storing sequence of values in such a way that tracing the path from root to any node yields an entire string. 
 
-Trie works on the concept of first buiding and then searching. The available texts or words are first converted into a trie. This phase is called building the trie. If we are storing lots of words that start with similar patterns, tries may reduce the overall storage cost by storing shared prefixes once. The biggest advantage of using a trie is that they save the prefixes of words and when a particular word is queried, only those characters are checked that are diffrent than the prefix, instead of checking every character of the word during every search.
+Trie works on the concept of first buiding a tree and then searching through the tree. If we are storing lots of words that start with similar patterns, tries may reduce the overall storage cost by storing shared prefixes once. The biggest advantage of using a trie is that we can save a lot of space while adding a character in a Trie. Next time, we only add a character which is not present in the prefix. 
+
+![image4](./images/tries.jpeg)
 
 
 ### Future enhancements 
