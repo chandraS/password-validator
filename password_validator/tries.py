@@ -1,62 +1,51 @@
-## Phase 1 - Build the trie with the given passwords in weak_password.txt (please check add function below)
-## Phase 2 - compare the input password with the words in trie and chek if the input password is a common password (please check search function below)
-
-class TrieNode(object):
+class Node(object):
 	"""
-	Our trie node implementation. Very basic. but does the job
+	Class Node for trie.
 	"""
 
-	def __init__(self, char: str):
-		self.char = char
-		self.children = []  # war, when, wow
-		# Is it the last character of the word.`
-		self.word_finished = False
+	def __init__(self, val):
+		self.val = val
+		self.children = []
+		self.word_end = False
 
 
-def add(root, word: str):
+def add(root, word):
 	"""
-	Adding a word in the trie structure
+	Adding a word in the trie. We loop through each character through
+	the string and create a node and add it to the hierarchy.
 	"""
 	node = root
 	for char in word:
-		found_in_child = False
-		# Search for the character in the children of the present `node`
+		in_child = False
 		for child in node.children:
-			if child.char == char:
-				# And point the node to the child that contains this char
+			if child.val == char:
 				node = child
-				found_in_child = True
+				in_child = True
 				break
-		# We did not find it so add a new chlid
-		if not found_in_child:
-			new_node = TrieNode(char)
+		if not in_child:
+			new_node = Node(char)
 			node.children.append(new_node)
-			# And then point node to the new child
 			node = new_node
 
-	# Everything finished. Mark it as the end of a word.
-	node.word_finished = True
+	node.word_end = True
 
 
-def search(root, prefix):
+def search(root, word):
 	"""
-	Check and return
-	  1. If the prefix exsists in any of the words we added so far
-	  2. If yes then how may words actually have the prefix
+	Method to search a word in trie. We extract each character and
+	drill down to the children of current nodes. If found, return true
+	else return false
 	"""
 	node = root
-	# If the root node has no children, then return False.
-	# Because it means we are trying to search in an empty trie
 	if not root.children:
 		return False
-	for char in prefix:
+	for char in word:
 		word_found = False
-		# Search through all the children of the present `node`
 		for child in node.children:
-			if child.char == char:
-				if child.word_finished:
+			if child.val == char:
+				# if word is found, mark word_found to true
+				if child.word_end:
 					word_found = True
-				# Assign node as the child containing the char and break
 				node = child
 				break
 
@@ -64,21 +53,3 @@ def search(root, prefix):
 		return True
 
 	return False
-
-
-if __name__ == "__main__":
-	root = TrieNode('*')
-
-	with open("input_password", "r") as fp:
-		lines = fp.readlines()
-
-		for line in lines:
-			add(root, line.strip())
-
-	#     tries will be complete
-
-	with open("input_password", "r") as fp:
-		lines = fp.readlines()
-
-		for line in lines:
-			search(root, line.strip())
