@@ -11,9 +11,12 @@ NIST recently updates their Digital Identity Guidelines in June 2017. The new gu
 
 ```
 cat input_passwords.txt | ./password_validator weak_password_list.txt
-mom -> Error: Too Short
-password1 -> Error: Too Common
-*** -> Error: Invalid Charaters
+1qaz2wsx -> Error: Too Common
+loser --> Error: Too Short
+mom --> Error: Too Short
+anastasia -> Error: Too Common
+asdsd*gtj h-> Error: Invalid Characters
+aaaaaaaaaaaa**-> Error: Invalid Characters
 ```
 
 The program should accept passwords from STDIN in newline delimited format and print invalid passwords to the command line
