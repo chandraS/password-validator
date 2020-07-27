@@ -8,4 +8,4 @@ install:
    - pip install e .
 
 script:
-  - python -m unittest tests/test_password_validator.py
+  - pytest
