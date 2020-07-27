@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
+
 import argparse
 import sys
 import os
 
-from password_validator.tries import add, search, TrieNode
 
+from password_validator.tries import add, search, Node
+from password_validator.const import *
 
-def main():
-
+def build_trie(root):
+	"""
+	This method takes a root paramater from where the trie can be built.
+	filepath is a mandatory argument to provide location of weak password.
+	Trie will be built on the weak password list
+	:param root: trie root
+	"""
 	# setting name and description of program
 	my_parser = argparse.ArgumentParser(prog="password_validator",
 										description="Read files and validate password")
@@ -21,33 +29,96 @@ def main():
 
 	if not os.path.isfile(password_file):
 		raise ValueError('The file specified does not exist. Please provide a valid path.')
-		sys.exit()
 
-	# create root for trie
-	root = TrieNode('*')
-
-	with open(password_file, "r", encoding='utf-8') as fp:
-		lines = fp.readlines()
+	with open(password_file, "r", encoding='utf-8') as f:
+		lines = f.readlines()
 
 		for line in lines:
 			add(root, line.strip())
 
+def not_ascii_check(text):
+	"""
+	check for non ascii character in string
+	:param text: word to compare non ascii character
+	:return: boolean, true if non ascii character in string
+	"""
+	if not all(ord(c) < UPPER_ASCII_CODE and ord(c) > LOWER_ASCII_CODE for c in text):
+		print(''.join([c if ord(c) < UPPER_ASCII_CODE and ord(c) > LOWER_ASCII_CODE
+					   else '*' for c in text]) + '-> Error: Invalid Characters')
+		return True
+
+	return False
+
+
+def min_password_check(text):
+	"""
+	check for minimum length for password
+	:param text:  word to check for minimum length
+	:return: boolean, true if password fails for minimun length criteria
+	"""
+	if len(text) < MIN_PASSWORD_LENGTH:
+		print('{} --> Error: Too Short'.format(text))
+		return True
+
+	return False
+
+
+def max_password_check(text):
+	"""
+	check for maximum length for password
+	:param text:  word to check for maximum length
+	:return: boolean, true if password fails for maximum length criteria
+	"""
+	if len(text) > MAX_PASSWORD_LENGTH:
+		print('{} --> Error: Too Long'.format(text))
+		return True
+
+	return False
+
+
+def weak_password_check(root, text):
+	"""
+	compare user input password with weak password file
+	:param root: starting trie root from where search will start
+	:param text: word to check for common password
+	:return: boolean, true if text is found in common password file
+	"""
+	if search(root, text):
+		print('{} -> Error: Too Common'.format(text))
+		return True
+
+	return False
+
+def search_trie(root):
+	"""
+	This method takes user input from stdin and loop through all the passwords
+	provided by the user. It compares each password with the specified rules and
+	provide a list of weak/common passwords to the console
+	:param root: trie root
+	"""
+
 	for line in sys.stdin:
-		check = line.strip()
+		text = line.strip()
 
-		# the length of the encoded word is compared with original word
-		# and used to determine whether its a ASCII or not
-		if not len(check) == len(check.encode()):
-			print(len(check) * '*' + '-> Error: Invalid Charaters')
+		if not_ascii_check(text):
+			continue
 
-		elif len(check) < 8:
-			print(check + ' -> Error: Too Short')
+		elif min_password_check(text):
+			continue
 
-		elif len(check) > 64:
-			print(check + ' Exceeded maximum length allowed. Max allowed length is 64.')
+		elif max_password_check(text):
+			continue
 
-		elif search(root, check):
-			print(check + '-> Error: Too Common')
+		else: weak_password_check(root, text)
+
+
+def main():
+
+	# create root for trie
+	root = Node('*')
+
+	build_trie(root)
+	search_trie(root)
 
 
 if __name__ == "__main__":
