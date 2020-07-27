@@ -20,44 +20,55 @@ Asterixes used to print unprintable characters
 
 ### Requirement
 
-Linux,  
+Linux  
 Python 3+ 
 
 ### Installation 
 
-Run `pip install .` from the root folder 
+Run `python3 setup.py develop` from the root folder 
+
+![image1](./images/venv.PNG)
+
+The above command will create a package for the password_validator tool 
 
 ### Usage 
 
 ```
-cat input_password | python3 password_validator-check weak_password
+cat input_password | password_validator weak_password
 1qaz2wsx-> Error: Too Common
 mom -> Error: Too Short
 *******-> Error: Invalid Charaters
 ```
 
-### How is the executable generated
+![image2](./images/output.PNG)
 
-I create a symbolic link for ```main.py``` which creates an executable. The symbolic link is password_validator-check
+If running on windows, its recommended to install a python virtual environment
 
-```ln -s main.py password_validator-check```
+Run `python3 -m venv venv` to install virtual environment 
 
+Run `.venv/bin/activate` to enable the virtual environment
+
+In order to create a zipped distribution package, please run `python3 setup.py sdist`
+
+### Test Cases
+
+`pytest` library has been used to test the inputs. 
+
+  ![image3](./images/pytest.PNG)
+
+ From the root folder, you can run `pytest` or `pytest -rA` to get the test result with individual checks 
 
 ## Analyzing different available data structures and selecting the one which is efficient(Trie)
 
 1. List 
 
-List is a linear dynamic data structure in which elements can be added linearly. These elements can then be accessed using indexes or even slicing operations. 
+List is a linear dynamic data structure in which elements can be added or removed linearly. This addition and removal involved O(n) time complexity. 
 
-There were two reasons for not using a List:
-
-* The list of weak password contains almost 1 billion rows. This meant iterating through every character of every word in the list of approximately 1 billion words delimited by new line characters. 
-
-* This clearly meant, that a time complexity of the order of O(n^m) would be involved. This signifies an exponential time complexity which means time required to find a matching password increase as the size of file increases.
+Iterating through the rows would mean going through each of the 1 billion rows in the file to check if the password exists or not. Hence, it could turn out to be time intensive process
 
 2. HashSet 
 
-The second approach could have been to represent the passwords in the weak password file consisting of 1 billion rows, in the form of set. This might be useful with small files but as the size increases, the search would take longer to complete. 
+The second approach could have been to represent the passwords in the weak password file consisting of 1 billion rows, in the form of set. In this case, hashes would be created for every password and saved in the memory. Hashes are computed even for almost similar words - like War, War1. Hashing is a good way to approach the problem if the file size is small. However, if the size starts increasing, it could be costly on memory
 
 3. Tries
 
