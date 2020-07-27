@@ -44,7 +44,7 @@ def not_ascii_check(text):
 	"""
 	if not all(ord(c) < UPPER_ASCII_CODE and ord(c) > LOWER_ASCII_CODE for c in text):
 		print(''.join([c if ord(c) < UPPER_ASCII_CODE and ord(c) > LOWER_ASCII_CODE
-					   else '*' for c in text]) + '-> Error: Invalid Characters')
+					   else '*' for c in text]) + '-> INVALID_CHARACTERS')
 		return True
 
 	return False
@@ -57,7 +57,7 @@ def min_password_check(text):
 	:return: boolean, true if password fails for minimun length criteria
 	"""
 	if len(text) < MIN_PASSWORD_LENGTH:
-		print('{} --> Error: Too Short'.format(text))
+		print('{} --> TOO_SHORT'.format(text))
 		return True
 
 	return False
@@ -70,7 +70,7 @@ def max_password_check(text):
 	:return: boolean, true if password fails for maximum length criteria
 	"""
 	if len(text) > MAX_PASSWORD_LENGTH:
-		print('{} --> Error: Too Long'.format(text))
+		print('{} --> TOO_LONG'.format(text))
 		return True
 
 	return False
@@ -84,7 +84,7 @@ def weak_password_check(root, text):
 	:return: boolean, true if text is found in common password file
 	"""
 	if search(root, text):
-		print('{} -> Error: Too Common'.format(text))
+		print('{} -> TOO_COMMON'.format(text))
 		return True
 
 	return False
