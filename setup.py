@@ -18,7 +18,7 @@ setup(
     name=NAME,
     version=VERSION,
     description=DESCRIPTION,
-    author_email="shicha1203@tamu.edu",
+    author_email="chandra.shikhar@gmail.com",
     url="https://github.com/chandraS",
     install_requires=REQUIRES,
     packages=find_packages(exclude=["*.tests", "tests", "tests.*"]),
