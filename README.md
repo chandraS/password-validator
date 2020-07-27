@@ -27,11 +27,13 @@ Python 3+
 
 ### Installation 
 
-Run `python3 setup.py develop` from the root folder 
+Run `pip install -e .` from the root folder 
 
-![image1](./images/venv.PNG)
+![image1](./images/.PNG)
 
-The above command will create a package for the password_validator tool 
+The above command will install a package for the password_validator tool in developer mode.
+
+In order to install it in production mode, please run `pip install .` 
 
 ### Usage 
 
