@@ -75,7 +75,7 @@ The solution used for this assessment leverages the Trie data structure. Trie is
 
 Trie works on the concept of first buiding a tree and then searching through the tree. If we are storing lots of words that start with similar patterns, tries may reduce the overall storage cost by storing shared prefixes once. The biggest advantage of using a trie is that we can save a lot of space while adding a character in a Trie. Next time, we only add a character which is not present in the prefix. 
 
-![image4](./images/trie.jpeg)
+![image4](./images/trie.PNG)
 
 
 ### Future enhancements 
